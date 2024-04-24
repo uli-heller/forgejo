@@ -2354,7 +2354,7 @@ tbody.commit-list {
 
 @media (min-width: 1201px) {
   tr.commit-list {
-    width: 1127px;
+    width: 100%;
   }
 }
 
