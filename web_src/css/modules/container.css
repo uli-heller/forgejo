@@ -33,7 +33,7 @@
 
 @media (min-width: 1200px) {
   .ui.ui.ui.container:not(.fluid) {
-    --container-width: 1127px;
+    --container-width: 100%;
     width: var(--container-width);
     margin-inline: auto;
   }
@@ -50,7 +50,7 @@
 
 /* overwrite width of containers inside the main page content div (div with class "page-content") */
 .page-content .ui.ui.ui.container:not(.fluid) {
-  --container-width: 1280px;
+  --container-width: 100%;
   width: var(--container-width);
   max-width: calc(100% - calc(2 * var(--page-margin-x)));
   margin-inline: auto;
