@@ -80,9 +80,63 @@ Basiszweig übernehmen!
 * Artefakt zum Hochladen erzeugen: `xz -c9 gitea >gitea-1.15.6-uli-09-linux-amd64.xz`
 * Artefakt in Github ablegen und lokal löschen
 
+Forgejo
+-------
+
+### Folgeversion
+
+Beispiel: 7.0.2 -> 7.0.3
+
+#### Ausgangspunkt
+
+Ausgecheckte Version 7.0.2:
+
+```
+uli@ulicsl:~/git/forked/forgejo$ git status
+Auf Branch 7.0.2-uli
+Ihr Branch ist auf demselben Stand wie 'origin/7.0.2-uli'.
+
+nichts zu committen, Arbeitsverzeichnis unverändert
+```
+
+#### Neue Version abholen
+
+```
+uli@ulicsl:~/git/forked/forgejo$ git fetch --all
+Fordere an von upstream
+remote: Enumerating objects: 3858, done.
+remote: Counting objects: 100% (2202/2202), done.
+remote: Compressing objects: 100% (768/768), done.
+remote: Total 1601 (delta 1258), reused 1127 (delta 804), pack-reused 0
+Empfange Objekte: 100% (1601/1601), 475.59 KiB | 4.21 MiB/s, fertig.
+Löse Unterschiede auf: 100% (1258/1258), abgeschlossen mit 343 lokalen Objekten.
+Von https://codeberg.org/forgejo/forgejo
+ * [neuer Branch]          bp-v7.0/forgejo-1b12ca8                   -> upstream/bp-v7.0/forgejo-1b12ca8
+ * [neuer Branch]          bp-v7.0/forgejo-82e0066                   -> upstream/bp-v7.0/forgejo-82e0066
+ * [neuer Branch]          bp-v7.0/forgejo-853f005                   -> upstream/bp-v7.0/forgejo-853f005
+ * [neuer Branch]          bp-v7.0/forgejo-d6915f4                   -> upstream/bp-v7.0/forgejo-d6915f4
+   6c33d55d16..9c7ff70072  forgejo                                   -> upstream/forgejo
+ + 9588e9caf0...f5157085aa renovate/ghcr.io-visualon-renovate-37.x   -> upstream/renovate/ghcr.io-visualon-renovate-37.x  (Aktualisierung erzwungen)
+ * [neuer Branch]          renovate/github-text-expander-element-2.x -> upstream/renovate/github-text-expander-element-2.x
+ * [neuer Branch]          renovate/github.com-golangci-golangci-lint-cmd-golangci-lint-1.x -> upstream/renovate/github.com-golangci-golangci-lint-cmd-golangci-lint-1.x
+ * [neuer Branch]          renovate/github.com-jhillyerd-enmime-1.x  -> upstream/renovate/github.com-jhillyerd-enmime-1.x
+ * [neuer Branch]          renovate/github.com-markbates-goth-1.x    -> upstream/renovate/github.com-markbates-goth-1.x
+ * [neuer Branch]          renovate/swagger-ui-dist-5.17.x           -> upstream/renovate/swagger-ui-dist-5.17.x
+   ba1f73f550..b5c49a19d2  v7.0/forgejo                              -> upstream/v7.0/forgejo
+ * [neues Tag]             v7.0.3                                    -> v7.0.3
+Fordere an von gitea
+Fordere an von origin
+```
+
+#### Änderungen anpassen auf neue Version
+
+```
+```
+
 Historie
 --------
 
+2024-05-23 - Abschnitt über FORGEJO
 2021-12-03 - Neue Version von Go (1.17.3), build-essential
 2021-10-28 - Anpassung auf gitea-1.15.6
 2021-10-27 - Neue Version von Go (1.17.2) und NodeJS (16.13.0)
