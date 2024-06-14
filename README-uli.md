@@ -131,7 +131,61 @@ Fordere an von origin
 #### Änderungen anpassen auf neue Version
 
 ```
+uli@ulicsl:~/git/forked/forgejo$ git rebase v7.0.3
+Erfolgreich Rebase ausgeführt und refs/heads/7.0.2-uli aktualisiert.
+
+uli@ulicsl:~/git/forked/forgejo$ git checkout -b 7.0.3-uli
+Zu neuem Branch '7.0.3-uli' gewechselt
+
+uli@ulicsl:~/git/forked/forgejo$ git push -u origin 7.0.3-uli:7.0.3-uli
+Objekte aufzählen: 1015, fertig.
+Zähle Objekte: 100% (1015/1015), fertig.
+Delta-Kompression verwendet bis zu 16 Threads.
+Komprimiere Objekte: 100% (323/323), fertig.
+Schreibe Objekte: 100% (773/773), 182.35 KiB | 10.73 MiB/s, fertig.
+Gesamt 773 (Delta 589), Wiederverwendet 601 (Delta 431), Paket wiederverwendet 0 (von 0)
+remote: Resolving deltas: 100% (589/589), completed with 217 local objects.
+remote: 
+remote: Create a pull request for '7.0.3-uli' on GitHub by visiting:
+remote:      https://github.com/uli-heller/forgejo/pull/new/7.0.3-uli
+remote: 
+To github.com:uli-heller/forgejo.git
+ * [new branch]            7.0.3-uli -> 7.0.3-uli
+Branch '7.0.3-uli' folgt nun 'origin/7.0.3-uli'.
 ```
+
+#### Tag
+
+```
+uli@ulicsl:~/git/forked/forgejo$ git describe --tags origin/7.0.2-uli
+7.0.2-uli-21
+
+# 21 ... weiterhin verwenden, wenn keine zusätzliche Änderung
+# 22 ... README angepasst -> hochzählen
+uli@ulicsl:~/git/forked/forgejo$ git tag 7.0.3-uli-22
+uli@ulicsl:~/git/forked/forgejo$ git push --tags
+Gesamt 0 (Delta 0), Wiederverwendet 0 (Delta 0), Paket wiederverwendet 0 (von 0)
+To github.com:uli-heller/forgejo.git
+ * [new tag]               7.0.3-uli-22 -> 7.0.3-uli-22
+ * [new tag]               v7.0.3 -> v7.0.3
+```
+
+#### Bauen im Build-Container
+
+* Anmelden mit `ssh -A...`, damit wir eine Verbindung zu GITHUB bekommen
+* Alle Dinge von GITHUB abholen: `git fetch --all -p` -> neues Tag wird angezeigt
+* Tag auschecken: `git checkout 7.0.3-uli-22` -> Warnung bzgl. 'detached HEAD' ignorieren
+* Versionstest: `git describe --tags --always` -> neues Tag wird angezeigt
+* Bauen:
+    ```
+    make clean
+    git clean -fdx
+    TAGS="bindata sqlite sqlite_unlock_notify" make build
+    ```
+* Hinweis: Obwohl wir FORGEJO bauen, wird ein Programm namens GITEA erzeugt!
+* Erneuter Versionstest: `./gitea --version` -> "Forgejo version 7.0.3-uli-22+gitea-1.21.11..."
+* Artefakt zum Hochladen erzeugen: `xz -c9 gitea >gitea-7.0.3-uli-22-linux-amd64.xz`
+* Artefakt in Github ablegen und lokal löschen
 
 Historie
 --------
