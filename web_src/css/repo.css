@@ -206,14 +206,20 @@ td .commit-summary {
   margin-right: 0.25em;
 }
 
-@media (max-width: 767.98px) {
-  .latest-commit .sha {
-    display: none;
-  }
-  .latest-commit .commit-summary {
-    margin-left: 8px;
-  }
-}
+/*
+ * Commit Hash ausblenden beim
+ * Ausdruck im Portrait-Format
+ * und bei schmalem Bildschirm
+ * -> Will ich nicht!
+ */
+/*@media (max-width: 767.98px) {*/
+/*  .latest-commit .sha {*/
+/*    display: none;*/
+/*  }*/
+/*  .latest-commit .commit-summary {*/
+/*    margin-left: 8px;*/
+/*  }*/
+/*}*/
 
 .repo-path {
   display: flex;
