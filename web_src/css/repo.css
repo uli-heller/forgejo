@@ -207,7 +207,7 @@ td .commit-summary {
 }
 
 @media (max-width: 767.98px) {
-  .latest-commit .shaaa {
+  .latest-commit .sha {
     display: none;
   }
   .latest-commit .commit-summary {
