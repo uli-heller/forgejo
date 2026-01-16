@@ -64,6 +64,19 @@ Basiszweig übernehmen!
 - Hilfsskript: [new-version.sh](tools/new-version.sh)
 - Aufruf: `./tools/new-version.sh v1.15.5 v1.15.6`
 
+#### Manueller Ablauf bei neuer Hauptversion
+
+Beispiel: Aktueller Stand ist im Zweig "13.0.4-uli", Tag "13.0.4-uli-29".
+Verfügbar ist nun ein Stand v14.0.0.
+
+- Zweig umbenennen: `git checkout -b 14.0.0-uli`
+- Rebase wie üblich scheitert: `git rebase v14.0.0` -> viele Konflikte, also `git rebase --abort`
+- Sonder-Rebase: `git rebase v13.0.4 HEAD --onto v14.0.0`
+- Fertigstellen:
+  - `git push -u origin 14.0.0-uli:14.0.0-uli`
+  - `git tag 14.0.0-uli-29`
+  - `git push --tags`
+
 ### Build-Container
 
 * Anmelden mit `ssh -A...`, damit wir eine Verbindung zu GITHUB bekommen
