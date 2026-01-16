@@ -69,11 +69,11 @@ Basiszweig übernehmen!
 Beispiel: Aktueller Stand ist im Zweig "13.0.4-uli", Tag "13.0.4-uli-29".
 Verfügbar ist nun ein Stand v14.0.0.
 
-- Zweig umbenennen: `git checkout -b 14.0.0-uli`
 - Rebase wie üblich scheitert: `git rebase v14.0.0` -> viele Konflikte, also `git rebase --abort`
 - Sonder-Rebase: `git rebase v13.0.4 HEAD --onto v14.0.0`
+- Zweig umbenennen: `git checkout -b 14.0.0-uli`
 - Fertigstellen:
-  - `git push -u origin 14.0.0-uli:14.0.0-uli`
+  - `git push -u origin 14.0.0-uli`
   - `git tag 14.0.0-uli-29`
   - `git push --tags`
 
