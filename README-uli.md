@@ -1,6 +1,29 @@
 Uli's Bau-Anleitung
 ===================
 
+Paket aktualisieren
+-------------------
+
+Hier beschreibe ich, wie das Forgejo-Paket aktualisiert
+und neu gebaut werden kann. Die Beschreibung setzt voraus,
+dass diverse Einrichtungsschritte bereits vollzogen sind.
+Diese sind weiter unten beschrieben!
+
+### v14.0.0 -> v14.0.1
+
+Dies ist der einfache und häufig auftretende Fall.
+Wir wollen eine geringfügige Aktualisierung durchführen.
+
+#### Per Skript
+
+```
+./tools/new-version.sh v14.0.0 v14.0.1
+```
+
+#### Manuell
+
+### v13.0.4 -> v14.0.0
+
 Build-Container einrichten
 --------------------------
 
