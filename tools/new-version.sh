@@ -40,6 +40,7 @@ oldTag () {
 OLD_ULI="$(echo "${OLD_BASE}"|cut -c2-)-uli"                                # OLD_ULI=1.15.5-uli
 NEW_ULI="$(echo "${NEW_BASE}"|cut -c2-)-uli"                                # NEW_ULI=1.15.6-uli
 git checkout "${OLD_ULI}"
+git checkout -b "${NEW_ULI}"
 OLD_TAG="$(oldTag "${OLD_ULI}")"                                            # OLD_TAG=1.15.5-uli-08
 test "$(git describe "${OLD_TAG}")" != "$(git describe "${OLD_ULI}")" && {
   # Create a new tag for the old base
@@ -50,8 +51,11 @@ test "$(git describe "${OLD_TAG}")" != "$(git describe "${OLD_ULI}")" && {
   git push --tags
   OLD_TAG="${OLD_TAG2}"                                                     # OLD_TAG=1.15.5-uli-08
 }
-git rebase "${NEW_BASE}"
-git checkout -b "${NEW_ULI}"
+git rebase "${NEW_BASE}" || {
+    echo >&2 "git rebase failed -> ABORTING"
+    git rebase --abort
+    exit 1
+}
 git push -u origin "${NEW_ULI}"
 NEW_TAG="$(echo "${OLD_TAG}"|sed -e "s/^${OLD_ULI}-/${NEW_ULI}-/")"         # NEW_TAG=1.15.6-uli-08
 git tag "${NEW_TAG}"
