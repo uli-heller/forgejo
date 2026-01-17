@@ -14,15 +14,43 @@ Diese sind weiter unten beschrieben!
 Dies ist der einfache und häufig auftretende Fall.
 Wir wollen eine geringfügige Aktualisierung durchführen.
 
-#### Per Skript
+Regelfall! Zählt ggf. automatisch die Tag-Nummer hoch!
 
 ```
 ./tools/new-version.sh v14.0.0 v14.0.1
+  # Works and shows latest tag: 14.0.1-uli-31
 ```
 
-#### Manuell
-
 ### v13.0.4 -> v14.0.0
+
+Sonderfall - greift immer dann, wenn "new-version.sh"
+Probleme mit Rebase hat!
+
+Beispiel: Aktueller Stand ist im Zweig "13.0.4-uli", Tag "13.0.4-uli-29".
+Verfügbar ist nun ein Stand v14.0.0.
+
+- Rebase wie üblich scheitert: `git rebase v14.0.0` -> viele Konflikte, also `git rebase --abort`
+- Sonder-Rebase: `git rebase v13.0.4 HEAD --onto v14.0.0`
+- Zweig umbenennen: `git checkout -b 14.0.0-uli`
+- Fertigstellen:
+  - `git push -u origin 14.0.0-uli`
+  - `git tag 14.0.0-uli-29`
+  - `git push --tags`
+
+### Bauen
+
+```
+ssh -A ubuntu@build-2004.incus
+
+  # Within the container
+cd ....
+git fetch --all
+git checkout 14.0.1-uli-31
+make clean && git clean -fdx && TAGS="bindata sqlite sqlite_unlock_notify" make build
+  # Creates a binary "gitea"
+./gitea --version
+  # Hopefully shows a matching version
+```
 
 Build-Container einrichten
 --------------------------
